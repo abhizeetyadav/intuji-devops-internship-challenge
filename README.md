@@ -57,10 +57,71 @@ services:
 Replace your-dockerhub-username with your Docker Hub username.
 
 
-## Task 4: Install Jenkins and Create CI/CD Pipeline
-Install Jenkins and necessary plugins.
+## Task 4: Setting up CI/CD Pipeline with Jenkins
 
-Create a freestyle project in Jenkins for the CI/CD pipeline. Configure the project to build artifacts using the Dockerfile directly from your GitHub repo.
+This guide will walk you through the process of setting up Jenkins, installing necessary plugins, and creating a freestyle project to build a CI/CD pipeline for your application using a Dockerfile directly from your GitHub repository.
+
+
+
+Prerequisites
+ * Ensure you have Docker installed on your machine.
+  * Have a GitHub repository with your application code and a Dockerfile
+  
+  ### Step 1: Install Jenkins
+Follow the official Jenkins installation guide for your operating system: Jenkins Installation Guide(https://www.jenkins.io/doc/book/installing/)
+
+### Step 2: Install Necessary Plugins
+1.  Open Jenkins in your browser (http://localhost:8080 by default).
+
+2.  Click on "Manage Jenkins" in the left sidebar.
+
+3.  Select "Manage Plugins."
+
+4.  Navigate to the "Available" tab.
+
+5.  Search for and install the following plugins:
+     GitHub Plugin
+     Docker Plugin
+6.  Restart Jenkins to apply the plugin changes.
+
+### Step 3: Configure GitHub Integration
+1. Go to "Manage Jenkins" > "Configure System."
+2. Scroll down to the "GitHub" section.
+3. Add your GitHub credentials and configure the necessary settings.
+
+### Step 4: Create a Freestyle Project
+1. Click on "New Item" on the Jenkins dashboard.
+2. Enter a name for your project (e.g., "MyAppCI/CD").
+3. Select "Freestyle project" and click "OK."
+
+### Step 5: Configure Build Steps
+1. In the project configuration, go to the "Build" section.
+
+2. Click on "Add build step" and choose "Execute shell" or "Execute Windows batch command," depending on your environment.
+
+3. Enter the build commands, including the Docker build command using your Dockerfile.
+
+Example Shell Build Commands:
+
+```
+git clone https://github.com/yourusername/your-repo.git
+cd your-repo
+docker build -t your-image-name .
+```
+Example Windows Batch Build Commands:
+```
+git clone https://github.com/yourusername/your-repo.git
+cd your-repo
+docker build -t your-image-name .
+```
+4. Save the project configuration.
+
+### Step 6: Triggering the CI/CD Pipeline
+1. Open your project on the Jenkins dashboard.
+2. Click on "Build Now" to manually trigger the CI/CD pipeline.
+
+Congratulations! You've successfully set up a Jenkins freestyle project for building a CI/CD pipeline for your application using a Dockerfile from your GitHub repository. Adjust the configurations and commands as needed for your specific project requirements.
+
 
 ## Screenshots
 
